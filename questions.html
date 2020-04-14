@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            margin: 3vh 3vw;
+            /* padding: 0vw; */
+            border: 1.6vh solid rgb(90, 81, 81);
+            border-radius: 3vh;
+            background-color: rgb(225, 234, 250);
+        }
+
+        .container {
+            /* border: 1px solid rgb(191, 191, 248); */
+            border-radius: 1vw;
+            box-sizing: border-box;
+            margin: 3vw 2vw 2vw 2vw;
+            /* width:p0vw; */
+            height: fit-content;
+            min-height: 89vh;
+            /* width: 93vw; */
+            padding: 1vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* align-items: center; */
+        }
+
+        .nice {
+            color: blue;
+            display: none;
+        }
+
+        #choices {
+            width: 70vw;
+            /* width: fit-content; */
+            font-family: 'Baloo Paaji 2', cursive;
+                        margin-top: 2vh;
+            margin-bottom: 0vh;
+        }
+
+        .choice {
+
+            border-radius: 2.2vh;
+            cursor: pointer;
+            /* padding: 3px; */
+            display: flex;
+            font-size: 4vh;
+            background-color: rgb(252, 251, 248);
+            margin-bottom: 1vh
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            ;
+        }
+
+        .option {
+            display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(97, 97, 218);
+    color: white;
+    border-radius: 2.2vh;
+    
+    width: 7vw;
+   
+            
+        }
+
+        .choice-text {
+            /* background-color: crimson; */
+            */ padding: 0px 3vw;
+            width: 100%;
+            /* line-height: 0vh; */
+            /* margin-right: 10px; */
+            margin: auto 1.5vw;
+        }
+
+        .choice:hover {
+            box-shadow: 0 0.1rem 0.1rem rgb(156, 156, 231);
+            transform: translateY(-0.18px);
+            transition: transform 150ms;
+        }
+
+        .incorrect {
+            background-color: rgb(209, 98, 98);
+        }
+
+        .correct {
+            background-color: rgb(142, 250, 142);
+        }
+
+        .header {
+            margin: 0px 0px 28vh 0px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #question {
+            /* margin-top: 20vw; */
+            font-size: 80%;
+            line-height: 6.5vh;
+        }
+
+        .head {
+            /* width: 1vw; */
+            font-size: 3vh;
+            margin: 0vw 0vw;
+            font-family: 'Baloo Paaji 2', cursive;      
+                  color: rgb(78, 78, 218);
+        }
+
+        #questioncounter,
+        #score {
+            /* font-weight:lighter; */
+            /* color: black; */
+            color: rgb(63, 57, 57);
+
+            font-style: normal;
+        }
+
+        #ques {
+            font-size: 6vh;
+            font-family: 'Baloo Paaji 2', cursive;
+                        font-weight: 0px;
+        }
+
+        #bar {
+            width: 19vw;
+            height: 2.7vh;
+            border: 0.3vh solid blue;
+            /* border: 0.3vh solid  rgb(156, 156, 253); */
+        }
+
+        #progress {
+            /* width: 19vw/; */
+            /* margin: 0.09vh 0.1vw 0vh 0.1vw; */
+            height: 2.7vh;
+            background-color: rgb(156, 156, 253);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+
+            <h6 class="head">Question:<span id="questioncounter"></span>
+                <div id="bar">
+
+                </div>
+            </h6>
+
+            <h6 class="head">Score:<span id="score"></span></h6>
+
+
+        </div>
+
+        <div id="question">
+            <h2 id="ques">Here Is Your Question.</h2>
+        </div>
+        <div id="choices">
+            <div class="choice">
+                <p class="option">A</p>
+                <p class="choice-text" id="1">Choice: 1</p>
+            </div>
+            <div class="choice">
+                <p class="option">B</p>
+                <p class="choice-text" id="2">Choice: 2</p>
+            </div>
+            <div class="choice">
+                <p class="option">C</p>
+                <p class="choice-text" id="3">Choice: 3</p>
+            </div>
+            <div class="choice" id="gg">
+                <p class="option" id="kk">D</p>
+                <p class="choice-text" id="4">Choice: 4</p>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        let currques = {};
+        var questioncounter = 0;
+        
+            let questions=[];
+            fetch("questions.json")
+            .then(function(res) {
+                // console.log(typeof(res.json()))
+                return res.json();
+            })
+            .then(loadquestions => {
+                console.log(loadquestions)
+                questions=loadquestions
+                console.log(questions)
+                availablequestions = [...questions]
+                getnewquestion(0);
+            })
+            .catch(err => {
+                console.error(err)
+            })
+
+        
+        getnewquestion = (sum) => {
+
+            if (availablequestions.length > 0 || questioncounter < questions.length) {
+                questioncounter++;
+                $('#bar').html(`<div id="progress" style=" width:${(19 / questions.length) * (questioncounter)}vw">
+                    
+                    </div>`)
+                $('#questioncounter').html(questioncounter + "/" + questions.length)
+                $('#score').html(sum)
+                var index = Math.floor(Math.random() * availablequestions.length)
+                // here i can use window.currques to declare currques globally inside a function
+                currques = availablequestions[index]
+                let quest = currques.question;
+                // console.log(quest,currques.answer)
+                ques.innerHTML = "Q." + questioncounter + quest
+                for (i = 1; i < 5; i++) {
+                    // console.log(currques['answer'])
+                    choiceval = currques['choice' + i]
+                    // console.log(choiceval)
+                    $('#' + i).html(choiceval)
+                }
+                availablequestions.splice(index, 1)
+
+            }
+            else {
+                $('#score').html(sum)
+                location.replace("end.html");
+
+            }
+
+        }
+
+        // getnewquestion(0);
+        let sum = 0
+        localStorage.setItem("recentscore", sum)
+        $('.choice').click(function (event) {
+            // console.log('id=',event.target.id,currques.answer)
+            var selection = event.target.id
+            // console.log($('#selection').parent().attr('id'))
+            // console.log()
+            parent = (document.getElementById(selection).parentElement)
+            if (currques.answer == selection) {
+                sum += 10
+                localStorage.setItem("recentscore", sum)
+                $(parent).addClass('correct');
+                setTimeout(function () {
+                    $(parent).removeClass('correct');
+                }, 600);
+            }
+            else {
+
+                $(parent).addClass('incorrect');
+                setTimeout(function () {
+                    $(parent).removeClass('incorrect');
+                }, 600);
+
+            }
+            setTimeout(function () {
+                getnewquestion(sum);
+            }, 600);
+
+        })
+
+    </script>
+</body>
+
+</html>

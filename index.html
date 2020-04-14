@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzly Beers</title>
+    
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&family=Baloo+Paaji+2:wght@600&display=swap"
+        rel="stylesheet">
+    <style>
+    body{
+        margin: 3vh 3vw;
+        /* padding: 0vw; */
+        border: 1.6vh solid rgb(90, 81, 81);
+        border-radius: 3vh;
+        background-color: rgb(225, 234, 250);
+    }
+
+    .container {
+        /* border: 1px solid rgb(191, 191, 248); */
+        /* border-radius: 1vw; */
+        box-sizing: border-box;
+        margin: 3vw 2vw 2vw 2vw;
+        /* width:p0vw; */
+        height: 89vh;
+        /* width: 93vw; */
+        padding: 1vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    input{
+        font-family: 'Baloo Paaji 2', cursive;
+    outline: none;
+    box-sizing: border-box;
+    padding: 1.5vh;
+    
+    width: 70vw;
+    max-width: 60vh;
+    line-height: 5vh;
+    font-size: 3.8vh;
+    border: 0.7vh solid rgb(177, 177, 240);
+    border-radius: 1.5vh;
+    }
+    button{
+        font-family: 'Baloo Paaji 2', cursive;
+overflow: hidden;
+        cursor: pointer;
+        line-height: 4vh;
+        outline: none;
+        margin-top: 2vh;
+        width: 70vw;
+        max-width: 60vh;
+        
+        padding: 1.5vh;
+        
+        
+        background-color: white;
+    
+        font-size: 4vh;
+        border: 0.7vh solid rgb(177, 177, 240);
+        border-radius: 1.5vh;
+    }
+    input:hover{
+        /* background-color:rgb(230, 230, 91); */
+        /* color: white; */
+    }
+    .highscorebox{
+        background-color: rgb(225, 234, 250);
+        /* border: 0.5vh solid rgb(153, 153, 243); */
+        border-radius: 2vh;
+        /* opacity: ; */
+        display: none;
+        position: absolute; ;
+        /* z-index=0; */
+        
+        /* padding:; */
+        left: auto;
+        bottom: 6vh;
+        width:83.3vw;
+        height:fit-content;
+        
+        min-height: 38vh;
+     
+        /* overflow: auto; */
+    }
+    .content{
+        font-family: 'Baloo Paaji 2', cursive;
+        font-size: 4.4vh;
+        text-align: center;
+        /* border: 2px solid black; */
+        /* display: block; */
+        margin: auto auto;
+        width: 80%;
+        line-height: 5.4vh;
+        
+    }
+    .close{
+        padding: 1vh;
+        position: absolute;
+    right: 1vw;
+    color: #aaaaaa;
+    font-size: 2.8vh;
+    top: 0;
+    font-weight: bold;
+    }
+.close:hover,.close:focus {
+    
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+h2{
+    display: flex;
+    justify-content: center;
+    font-size: 6vh;
+    color: rgb(42, 42, 143);
+}
+#borderline{
+    margin: auto;
+    width: 70vw;
+    border-top: 0.4vh solid rgb(177, 177, 240);
+    
+    /* color: rgb(42, 42, 143); */
+}
+h1{
+   
+    margin-bottom: 30vh;
+   
+    display: block;
+   
+    width: 51vw;
+    /* width: 36vh; */
+    max-width: 36vh;
+    color: rgb(42, 42, 143);
+    
+    white-space: nowrap;
+    font-size: 6vh;
+   
+    overflow: hidden;
+    border-right: 0.7vw solid rgb(152, 152, 233);
+    animation: typing 3s steps(13) 2 alternate ,blink 1s infinite;
+   
+}
+@keyframes typing
+{
+    0%
+    {
+        width: 0vw;
+    }
+    
+}
+@keyframes blink
+{
+    50%{
+         border-color: transparent;
+    }
+}
+
+</style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Quizzly Beers</h1>
+        <div class="highscorebox">
+            <div id="borderline"></div>
+            <h2>HighScores</h2>
+            <div class="content">
+                
+            </div>
+            <span class="close">&times;</span>
+        </div>
+    <!-- <label for="username">Us</label> -->
+    <input id="username" type="text" placeholder="Enter Your Username:">
+    <button id="play" onclick="location.href='index.html'">
+        Play
+    </button>
+    <button id="highscore">
+        HighScore
+    </button>
+
+</div>
+<script>
+    // console.log(localStorage.getItem('highscores'))
+$(window).bind("pageshow", function() {
+    $("#username").val('');
+    // $("#another_id").val('');
+});
+// var name=""
+if(!name){
+    $('#play').prop('disabled',true);
+    }
+
+    $('#username').keyup(function(){
+    
+        var name = $('#username').val();
+        
+        if(!name){ 
+    $('#play').prop('disabled',true);
+    }
+    else{
+        $('#play').prop('disabled',false);
+        localStorage.setItem('username',name)
+    }  
+})
+//    localStorage.setItem()
+
+    $('.close').click(function(){
+        $('.highscorebox').css("display",'none')
+    })
+    $("#highscore").click(function(){
+        $('.highscorebox').css("display",'block')
+       const highscores=JSON.parse(localStorage.getItem('highscores'))
+       console.log(highscores,typeof(highscores))
+       mystr=""
+      for(user in highscores){
+          console.log(user + " : " + highscores[user])
+     mystr= mystr+`${user + " : " + highscores[user]} <br>`
+       }
+       $('.content').html(mystr)
+
+});
+window.onclick = function(event) {
+  if (event.target == document.getElementsByClassName("highscorebox")) {
+    $('.highscorebox').css("display",'none')
+  }
+}
+    
+   
+</script>
+</body>
+</html>
